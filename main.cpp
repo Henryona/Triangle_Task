@@ -5,6 +5,11 @@ int main(int argc, char** argv)
     QApplication app(argc, argv);
     // задаём фоновую картинку
     QPixmap backgroundPic("/home/henryona/Triangle_Task/someProject/background.jpg");
+    // задаём курсор
+    QPixmap mainCursorPic("/home/henryona/Triangle_Task/someProject/cursor_knife.png");
+    QPixmap editCursorPic("/home/henryona/Triangle_Task/someProject/cat.png");
+    QCursor mainCur(mainCursorPic);
+    QCursor editCur(editCursorPic);
     // основной виджет
     QWidget mainWgt;
     mainWgt.setFixedSize(700,300); // задаём размеры
@@ -12,6 +17,7 @@ int main(int argc, char** argv)
     QPalette mainWidgetPal; // палитра с фоновым изображением
     mainWidgetPal.setBrush(mainWgt.backgroundRole(), QBrush(backgroundPic));
     mainWgt.setPalette(mainWidgetPal); // применяем палитру к основному виджету
+    mainWgt.setCursor(mainCur);
 
     // надпись
     QLabel* lbl = new QLabel(&mainWgt);
@@ -26,14 +32,17 @@ int main(int argc, char** argv)
     QLabel* firstSide = new QLabel("&Значение #1:");
     QLineEdit* inputFirstVal = new QLineEdit;
     firstSide->setBuddy(inputFirstVal);
+    inputFirstVal->setCursor(editCur);
 
     QLabel* secondSide = new QLabel("&Значение #2:");
     QLineEdit* inputSecondVal = new QLineEdit;
     secondSide->setBuddy(inputSecondVal);
+    inputSecondVal->setCursor(editCur);
 
     QLabel* thirdSide = new QLabel("&Значение #3:");
     QLineEdit* inputThirdVal = new QLineEdit;
     thirdSide->setBuddy(inputThirdVal);
+    inputThirdVal->setCursor(editCur);
 
     QVBoxLayout* sidesLayout = new QVBoxLayout;
     sidesLayout->addWidget(lbl);
