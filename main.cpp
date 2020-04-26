@@ -12,7 +12,7 @@ int main(int argc, char** argv)
     QCursor editCur(editCursorPic);
     // основной виджет
     QWidget mainWgt;
-    mainWgt.setFixedSize(700,300); // задаём размеры
+    mainWgt.setFixedSize(700,150); // задаём размеры
     backgroundPic = backgroundPic.scaled(mainWgt.size(), Qt::IgnoreAspectRatio); // размер фонового изображения = размерам окна
     QPalette mainWidgetPal; // палитра с фоновым изображением
     mainWidgetPal.setBrush(mainWgt.backgroundRole(), QBrush(backgroundPic));
@@ -33,26 +33,37 @@ int main(int argc, char** argv)
     QLineEdit* inputFirstVal = new QLineEdit;
     firstSide->setBuddy(inputFirstVal);
     inputFirstVal->setCursor(editCur);
+    firstSide->setFrameStyle(QFrame::Panel | QFrame::Raised);
 
     QLabel* secondSide = new QLabel("&Значение #2:");
     QLineEdit* inputSecondVal = new QLineEdit;
     secondSide->setBuddy(inputSecondVal);
     inputSecondVal->setCursor(editCur);
+    secondSide->setFrameStyle(QFrame::Panel | QFrame::Raised);
 
     QLabel* thirdSide = new QLabel("&Значение #3:");
     QLineEdit* inputThirdVal = new QLineEdit;
     thirdSide->setBuddy(inputThirdVal);
     inputThirdVal->setCursor(editCur);
+    thirdSide->setFrameStyle(QFrame::Panel | QFrame::Raised);
 
-    QVBoxLayout* sidesLayout = new QVBoxLayout;
-    sidesLayout->addWidget(lbl);
-    sidesLayout->addWidget(firstSide);
-    sidesLayout->addWidget(inputFirstVal);
-    sidesLayout->addWidget(secondSide);
-    sidesLayout->addWidget(inputSecondVal);
-    sidesLayout->addWidget(thirdSide);
-    sidesLayout->addWidget(inputThirdVal);
-    mainWgt.setLayout(sidesLayout);
+    QVBoxLayout* vertLayout = new QVBoxLayout();
+    QHBoxLayout* horLayout = new QHBoxLayout();
+    QHBoxLayout* hor2Layout = new QHBoxLayout();
+
+
+    vertLayout->addWidget(lbl);
+    horLayout->setSpacing(25);
+    horLayout->addWidget(firstSide);
+    horLayout->addWidget(secondSide);
+    horLayout->addWidget(thirdSide);
+    hor2Layout->setSpacing(25);
+    hor2Layout->addWidget(inputFirstVal);
+    hor2Layout->addWidget(inputSecondVal);
+    hor2Layout->addWidget(inputThirdVal);
+    vertLayout->addLayout(horLayout);
+    vertLayout->addLayout(hor2Layout);
+    mainWgt.setLayout(vertLayout);
 
     mainWgt.show();
 
