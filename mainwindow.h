@@ -2,23 +2,31 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QWidget>
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+class QLabel;
+class QPushButton;
+class QLineEdit;
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class MainWindow : public QWidget
 {
     Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+
+private slots:
+    void resizeEvent(QResizeEvent*);
+    void on_solverButton_clicked();
 
 private:
-    Ui::MainWindow *ui;
+    void createFormInterior();
+    QLineEdit *inputFirstVal;
+    QLineEdit *inputSecondVal;
+    QLineEdit *inputThirdVal;
+    QPushButton *solverButton;
 
-/*protected:
-    virtual void resizeEvent(QResizeEvent *);*/
 };
 #endif // MAINWINDOW_H
