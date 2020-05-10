@@ -18,11 +18,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    trianglemaincheck.cpp
+    modifiedmessagebox.cpp \
+    triangle.cpp \
+    triangledrawsolve.cpp \
+    trianglemaincheck.cpp \
+    trianglescale.cpp
 
 HEADERS += \
     mainwindow.h \
-    trianglemaincheck.h
+    modifiedmessagebox.h \
+    triangle.h \
+    triangledrawsolve.h \
+    trianglemaincheck.h \
+    trianglescale.h
 
 FORMS += \
     mainwindow.ui

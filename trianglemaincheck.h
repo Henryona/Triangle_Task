@@ -3,4 +3,5 @@
 
 bool trianglemaincheck(double, double, double);
 
+
 #endif // TRIANGLEMAINCHECK_H

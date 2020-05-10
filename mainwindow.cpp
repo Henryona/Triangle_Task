@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "trianglemaincheck.h"
 #include <QtWidgets>
+#include "modifiedmessagebox.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -85,15 +86,16 @@ void MainWindow::on_solverButton_clicked()
         QString secondIntput = inputSecondVal->text();
         QString thirdIntput = inputThirdVal->text();
         if (!firstInput.toDouble() || !secondIntput.toDouble() || !thirdIntput.toDouble()) {
-            QMessageBox::information(0, "Некорректные данные", "Вы ввели какой-то мусор!");
+            QMessageBox::critical(0, "Некорректные данные", "Вы ввели какой-то мусор!");
             break;
         }
         double firstValue = firstInput.toDouble();
         double secondValue = secondIntput.toDouble();
         double thirdValue = thirdIntput.toDouble();
 
+
         if (firstValue <= 0 || secondValue <= 0 || thirdValue <= 0) {
-            QMessageBox::information(0, "Некорректные данные", "Стороны треугольника не могут быть отрицательными!");
+            QMessageBox::critical(0, "Некорректные данные", "Стороны треугольника не могут быть отрицательными!");
             break;
         }
 
@@ -102,12 +104,15 @@ void MainWindow::on_solverButton_clicked()
             QString answer_text = "Числа " + firstInput + ", " + \
                                              secondIntput  + ", " + \
                                              thirdIntput + " - могут быть сторонами треугольника :)";
-            QMessageBox::information(0, "Ответ", answer_text);
+            //QMessageBox::information(0, "Ответ", answer_text);
+            Modifiedmessagebox *modifiedmessagebox = new Modifiedmessagebox(firstValue, secondValue, thirdValue);
+            modifiedmessagebox->show();
         } else {
             QString answer_text = "Числа " + firstInput + ", " + \
                                              secondIntput  + ", " + \
                                              thirdIntput + " - не могут быть сторонами треугольника :(";
-            QMessageBox::information(0, "Ответ", answer_text);
+            QMessageBox::critical(0, "Ответ", answer_text);
+
         }
     }
     while(false);
