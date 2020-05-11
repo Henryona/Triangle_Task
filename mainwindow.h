@@ -27,9 +27,6 @@ private:
     QLineEdit *inputSecondVal;
     QLineEdit *inputThirdVal;
     QPushButton *solverButton;
-    //double *firstValue;
-    //double *secondValue;
-    //double *thirdValue;
 
 };
 #endif // MAINWINDOW_H

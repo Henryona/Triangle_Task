@@ -10,7 +10,7 @@ Triangle::Triangle(double B1, double C0, double C1) :
 
 QRectF Triangle::boundingRect() const
 {
-    return QRectF(-15,-15,40,60);   // Ограничиваем область, в которой лежит треугольник
+    return QRectF(-60,-15,40,60);   // Ограничиваем область, в которой лежит треугольник
 }
 
 void Triangle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

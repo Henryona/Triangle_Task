@@ -17,12 +17,7 @@ private:
     double C1;
 
 protected:
-    QRectF boundingRect() const;    /* Определяем виртуальный метод,
-      //                               * который возвращает область, в которой
-      //                               * находится треугольник
-      //                               * */
-    /* Определяем метод для отрисовки треугольника
-     * */
+    QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 };
 

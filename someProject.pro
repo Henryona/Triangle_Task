@@ -19,18 +19,22 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     modifiedmessagebox.cpp \
+    supportmathfuncs.cpp \
     triangle.cpp \
     triangledrawsolve.cpp \
     trianglemaincheck.cpp \
-    trianglescale.cpp
+    trianglescale.cpp \
+    trianglesecondarycheck.cpp
 
 HEADERS += \
     mainwindow.h \
     modifiedmessagebox.h \
+    supportmathfuncs.h \
     triangle.h \
     triangledrawsolve.h \
     trianglemaincheck.h \
-    trianglescale.h
+    trianglescale.h \
+    trianglesecondarycheck.h
 
 FORMS += \
     mainwindow.ui
