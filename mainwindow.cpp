@@ -2,6 +2,7 @@
 #include "trianglemaincheck.h"
 #include <QtWidgets>
 #include "modifiedmessagebox.h"
+#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -13,10 +14,13 @@ MainWindow::MainWindow(QWidget *parent)
 void MainWindow::createFormInterior()
 {
     // задаём фоновую картинку
-    QPixmap backgroundPic("/home/henryona/Triangle_Task/someProject/background.jpg");
+    QPixmap backgroundPic(QApplication::applicationDirPath() + \
+                    QDir::toNativeSeparators(QDir::separator()) + "background.jpg");
     // задаём курсор
-    QPixmap mainCursorPic("/home/henryona/Triangle_Task/someProject/cursor_knife.png");
-    QPixmap editCursorPic("/home/henryona/Triangle_Task/someProject/cat.png");
+    QPixmap mainCursorPic(QApplication::applicationDirPath() + \
+                          QDir::toNativeSeparators(QDir::separator()) + "cursor_knife.png");
+    QPixmap editCursorPic(QApplication::applicationDirPath() + \
+                          QDir::toNativeSeparators(QDir::separator()) + "cat.png");
     QCursor mainCur(mainCursorPic);
     QCursor editCur(editCursorPic);
 
@@ -120,7 +124,8 @@ void MainWindow::on_solverButton_clicked()
 
 void MainWindow::resizeEvent(QResizeEvent *evt)
 {
-    QPixmap backgroundPic("/home/henryona/Triangle_Task/someProject/background.jpg");
+    QPixmap backgroundPic(QApplication::applicationDirPath() + \
+                    QDir::toNativeSeparators(QDir::separator()) + "background.jpg");
     backgroundPic = backgroundPic.scaled(size(), Qt::IgnoreAspectRatio); // размер фонового изображения = размерам окна
     QPalette p ; // палитра с фоновым изображением
     p.setBrush(QPalette::Background, QBrush(backgroundPic));
