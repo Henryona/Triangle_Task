@@ -27,6 +27,7 @@ private:
     QLineEdit *inputSecondVal;
     QLineEdit *inputThirdVal;
     QPushButton *solverButton;
+    QImage backgroundImage;
 
 };
 #endif // MAINWINDOW_H

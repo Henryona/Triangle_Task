@@ -2,7 +2,7 @@
 #include "trianglemaincheck.h"
 #include <QtWidgets>
 #include "modifiedmessagebox.h"
-#include <iostream>
+//#include "background.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QWidget(parent)
@@ -13,6 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::createFormInterior()
 {
+    //char i = gimp_image_1.pixel_data;
+    //const QImage backgroundImage ((const uchar*)gimp_image_1, width_1, height_1, QImage::Format_RGB32);
+    //QPixmap backgroundPic (QPixmap::fromImage(backgroundImage));
+    //const QImage backgroundImage ((const char*)v.data(), w, h, QImage::Format_RGB16);
     // задаём фоновую картинку
     QPixmap backgroundPic(QApplication::applicationDirPath() + \
                     QDir::toNativeSeparators(QDir::separator()) + "background.jpg");
@@ -33,6 +37,7 @@ void MainWindow::createFormInterior()
 
     // надпись
     QLabel* lbl = new QLabel("Введите три значения в форму ниже чтобы проверить,\nявляются ли они сторонами треугольника");
+    lbl->setObjectName("input_three_values_label");
     QFont font = lbl->font();
     font.setPointSize(20); //установим высоту шрифта
     lbl->setAlignment(Qt::AlignCenter); // выравнивание по центру
@@ -41,24 +46,38 @@ void MainWindow::createFormInterior()
     //lbl->show();
 
     QLabel* firstSide = new QLabel("&Значение #1:");
+    firstSide->setObjectName("value_1_label");
+
     inputFirstVal = new QLineEdit;
+    inputFirstVal->setObjectName("first_value_lineedit");
+
     firstSide->setBuddy(inputFirstVal);
     inputFirstVal->setCursor(editCur);
     firstSide->setFrameStyle(QFrame::Panel | QFrame::Raised);
 
     QLabel* secondSide = new QLabel("&Значение #2:");
+    secondSide->setObjectName("value_2_label");
+
     inputSecondVal = new QLineEdit;
+    inputSecondVal->setObjectName("second_value_lineedit");
+
     secondSide->setBuddy(inputSecondVal);
     inputSecondVal->setCursor(editCur);
     secondSide->setFrameStyle(QFrame::Panel | QFrame::Raised);
 
     QLabel* thirdSide = new QLabel("&Значение #3:");
+    thirdSide->setObjectName("value_3_label");
+
     inputThirdVal = new QLineEdit;
+    inputThirdVal->setObjectName("third_value_lineedit");
+
     thirdSide->setBuddy(inputThirdVal);
     inputThirdVal->setCursor(editCur);
     thirdSide->setFrameStyle(QFrame::Panel | QFrame::Raised);
 
     QPushButton* solverButton = new QPushButton("&Проверка!");
+    solverButton->setObjectName("check_buutton");
+
     solverButton->setFixedSize(100,20);
     //connect(solverButton, SIGNAL(clicked()), qApp, SLOT(on_solverButton_clicked()));
     connect(solverButton, &QPushButton::clicked, this, &MainWindow::on_solverButton_clicked);
@@ -90,7 +109,14 @@ void MainWindow::on_solverButton_clicked()
         QString secondIntput = inputSecondVal->text();
         QString thirdIntput = inputThirdVal->text();
         if (!firstInput.toDouble() || !secondIntput.toDouble() || !thirdIntput.toDouble()) {
-            QMessageBox::critical(0, "Некорректные данные", "Вы ввели какой-то мусор!");
+            //QMessageBox::critical(0, "Некорректные данные", "Вы ввели какой-то мусор!");
+            QMessageBox trash_in_data_message;
+            trash_in_data_message.setObjectName("trash_in_data_message_box");
+
+            trash_in_data_message.setIcon(QMessageBox::Critical);
+            trash_in_data_message.setText("Вы ввели какой-то мусор!");
+            trash_in_data_message.setWindowTitle("Некорректные данные");
+            trash_in_data_message.exec();
             break;
         }
         double firstValue = firstInput.toDouble();
@@ -99,7 +125,14 @@ void MainWindow::on_solverButton_clicked()
 
 
         if (firstValue <= 0 || secondValue <= 0 || thirdValue <= 0) {
-            QMessageBox::critical(0, "Некорректные данные", "Стороны треугольника не могут быть отрицательными!");
+            //QMessageBox::critical(0, "Некорректные данные", "Стороны треугольника не могут быть отрицательными!");
+            QMessageBox negative_in_data_message;
+            negative_in_data_message.setObjectName("negative_in_data_message_box");
+
+            negative_in_data_message.setIcon(QMessageBox::Critical);
+            negative_in_data_message.setText("Стороны треугольника не могут быть отрицательными!");
+            negative_in_data_message.setWindowTitle("Некорректные данные");
+            negative_in_data_message.exec();
             break;
         }
 
@@ -110,6 +143,7 @@ void MainWindow::on_solverButton_clicked()
                                              thirdIntput + " - могут быть сторонами треугольника :)";
             //QMessageBox::information(0, "Ответ", answer_text);
             Modifiedmessagebox *modifiedmessagebox = new Modifiedmessagebox(firstValue, secondValue, thirdValue);
+            modifiedmessagebox->setObjectName("answer_window");
             modifiedmessagebox->show();
         } else {
             QString answer_text = "Числа " + firstInput + ", " + \
@@ -124,6 +158,8 @@ void MainWindow::on_solverButton_clicked()
 
 void MainWindow::resizeEvent(QResizeEvent *evt)
 {
+    //const QImage backgroundImage ((const uchar*)gimp_image_1, width_1, height_1, QImage::Format_RGB32);
+    //QPixmap backgroundPic (QPixmap::fromImage(backgroundImage));
     QPixmap backgroundPic(QApplication::applicationDirPath() + \
                     QDir::toNativeSeparators(QDir::separator()) + "background.jpg");
     backgroundPic = backgroundPic.scaled(size(), Qt::IgnoreAspectRatio); // размер фонового изображения = размерам окна
