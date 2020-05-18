@@ -18,7 +18,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
 
 private slots:
-    void resizeEvent(QResizeEvent*);
+    //void resizeEvent(QResizeEvent*);
     void on_solverButton_clicked();
 
 private:

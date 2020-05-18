@@ -13,27 +13,23 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::createFormInterior()
 {
-    //char i = gimp_image_1.pixel_data;
-    //const QImage backgroundImage ((const uchar*)gimp_image_1, width_1, height_1, QImage::Format_RGB32);
-    //QPixmap backgroundPic (QPixmap::fromImage(backgroundImage));
-    //const QImage backgroundImage ((const char*)v.data(), w, h, QImage::Format_RGB16);
     // задаём фоновую картинку
-    QPixmap backgroundPic(QApplication::applicationDirPath() + \
+    //QPixmap backgroundPic(QApplication::applicationDirPath() + \
                     QDir::toNativeSeparators(QDir::separator()) + "background.jpg");
     // задаём курсор
-    QPixmap mainCursorPic(QApplication::applicationDirPath() + \
+    //QPixmap mainCursorPic(QApplication::applicationDirPath() + \
                           QDir::toNativeSeparators(QDir::separator()) + "cursor_knife.png");
-    QPixmap editCursorPic(QApplication::applicationDirPath() + \
+    //QPixmap editCursorPic(QApplication::applicationDirPath() + \
                           QDir::toNativeSeparators(QDir::separator()) + "cat.png");
-    QCursor mainCur(mainCursorPic);
-    QCursor editCur(editCursorPic);
+    //QCursor mainCur(mainCursorPic);
+    //QCursor editCur(editCursorPic);
 
     //setFixedSize(700,170); // задаём размеры
-    backgroundPic = backgroundPic.scaled(size(), Qt::IgnoreAspectRatio); // размер фонового изображения = размерам окна
-    QPalette mainWidgetPal; // палитра с фоновым изображением
-    mainWidgetPal.setBrush(backgroundRole(), QBrush(backgroundPic));
-    setPalette(mainWidgetPal); // применяем палитру к основному виджету
-    setCursor(mainCur);
+    //backgroundPic = backgroundPic.scaled(size(), Qt::IgnoreAspectRatio); // размер фонового изображения = размерам окна
+    //QPalette mainWidgetPal; // палитра с фоновым изображением
+    //mainWidgetPal.setBrush(backgroundRole(), QBrush(backgroundPic));
+    //setPalette(mainWidgetPal); // применяем палитру к основному виджету
+    //setCursor(mainCur);
 
     // надпись
     QLabel* lbl = new QLabel("Введите три значения в форму ниже чтобы проверить,\nявляются ли они сторонами треугольника");
@@ -52,7 +48,7 @@ void MainWindow::createFormInterior()
     inputFirstVal->setObjectName("first_value_lineedit");
 
     firstSide->setBuddy(inputFirstVal);
-    inputFirstVal->setCursor(editCur);
+    //inputFirstVal->setCursor(editCur);
     firstSide->setFrameStyle(QFrame::Panel | QFrame::Raised);
 
     QLabel* secondSide = new QLabel("&Значение #2:");
@@ -62,7 +58,7 @@ void MainWindow::createFormInterior()
     inputSecondVal->setObjectName("second_value_lineedit");
 
     secondSide->setBuddy(inputSecondVal);
-    inputSecondVal->setCursor(editCur);
+    //inputSecondVal->setCursor(editCur);
     secondSide->setFrameStyle(QFrame::Panel | QFrame::Raised);
 
     QLabel* thirdSide = new QLabel("&Значение #3:");
@@ -72,7 +68,7 @@ void MainWindow::createFormInterior()
     inputThirdVal->setObjectName("third_value_lineedit");
 
     thirdSide->setBuddy(inputThirdVal);
-    inputThirdVal->setCursor(editCur);
+    //inputThirdVal->setCursor(editCur);
     thirdSide->setFrameStyle(QFrame::Panel | QFrame::Raised);
 
     QPushButton* solverButton = new QPushButton("&Проверка!");
@@ -156,7 +152,7 @@ void MainWindow::on_solverButton_clicked()
     while(false);
 }
 
-void MainWindow::resizeEvent(QResizeEvent *evt)
+/*void MainWindow::resizeEvent(QResizeEvent *evt)
 {
     //const QImage backgroundImage ((const uchar*)gimp_image_1, width_1, height_1, QImage::Format_RGB32);
     //QPixmap backgroundPic (QPixmap::fromImage(backgroundImage));
@@ -168,4 +164,4 @@ void MainWindow::resizeEvent(QResizeEvent *evt)
     setPalette(p); // применяем палитру к основному виджету
 
     QWidget::resizeEvent(evt); //call base implementation
-}
+}*/
